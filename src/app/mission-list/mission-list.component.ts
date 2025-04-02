@@ -64,10 +64,14 @@ export class MissionListComponent implements OnInit {
   }
 
   onYearChange(launch_year: number) {
+    if (launch_year) {
+      this.spaceApiService.getMissionsByYear(launch_year).subscribe((data: Mission[]) => {
+        this.missions = data
+      });
+      return;
+    }
 
-    this.spaceApiService.getMissionsByYear(launch_year).subscribe((data: Mission[]) => {
-      this.missions = data
-    });
+    this.reload();
   }
 
   reload() {
