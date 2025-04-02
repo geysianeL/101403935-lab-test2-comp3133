@@ -23,8 +23,7 @@ import { MissionFilterComponent } from '../mission-filter/mission-filter.compone
     MissionFilterComponent
   ],
   template: `
-    <h1 class="title">SpaceX Mission Launch List</h1>
-<app-mission-filter/>
+    <app-mission-filter (yearChanged)="onYearChange(+($event))"></app-mission-filter>
     <div class="mission-grid" *ngIf="missions.length > 0; else loading">
     <div class="mission-card" *ngFor="let mission of missions">
       <app-mission-details [mission]="mission"/>
@@ -35,12 +34,7 @@ import { MissionFilterComponent } from '../mission-filter/mission-filter.compone
     </ng-template>
   `,
   styles: [`
-    .title {
-      text-align: center;
-      margin: 16px 0;
-      font-size: 28px;
-      font-weight: bold;
-    }
+
     .mission-grid {
       display: flex;
       flex-direction: column;
@@ -66,13 +60,18 @@ export class MissionListComponent implements OnInit {
   constructor(private spaceApiService: SpaceApiService) { }
 
   ngOnInit(): void {
-    this.spaceApiService.getMissions().subscribe((data: Mission[]) => {
+    this.reload()
+  }
+
+  onYearChange(launch_year: number) {
+
+    this.spaceApiService.getMissionsByYear(launch_year).subscribe((data: Mission[]) => {
       this.missions = data
     });
   }
 
-  onYearChange(launch_year: number) {
-    this.spaceApiService.getMissionsByYear(launch_year).subscribe((data: Mission[]) => {
+  reload() {
+    this.spaceApiService.getMissions().subscribe((data: Mission[]) => {
       this.missions = data
     });
   }

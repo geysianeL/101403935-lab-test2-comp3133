@@ -9,10 +9,19 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,
     CommonModule],
   template: `
-
+    <h1 class="title">COMP 3133 | LABTEST 2 | SpaceX API</h1>
     <router-outlet />
   `,
-  styles: [],
+  styles: [
+    ` 
+    .title {
+      text-align: center;
+      margin: 16px 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    `
+  ],
 })
 export class AppComponent {
 
