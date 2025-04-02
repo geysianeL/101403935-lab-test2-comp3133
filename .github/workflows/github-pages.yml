@@ -27,6 +27,11 @@ jobs:
     - name: Build Angular app
       run: npm run build -- --output-path=dist --base-href /101403935-lab-test2-comp3133/
 
+    - name: Move browser folder contents to root
+      run: |
+        mv dist/browser/* dist/
+        rmdir dist/browser
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
