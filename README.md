@@ -15,6 +15,8 @@ docker compose up --build -d
 docker-compose up --build -d
 ```
 
+The application will be available at [http://localhost:8080/](http://localhost:8080/)
+
 ## Github Repository
 
 [101403935-lab-test2-comp3133](https://github.com/geysianeL/101403935-lab-test2-comp3133)
